@@ -1,0 +1,171 @@
+Assignment 1 :
+This code is a Python program that generates and prints the Fibonacci sequence up to a specified number of terms. The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1.
+
+Here's a detailed explanation of the code:
+
+1. `def recur_fibo(n):`
+   - This line defines a recursive function named `recur_fibo` that takes an integer `n` as its argument. This function will calculate the nth Fibonacci number using recursion.
+
+2. `if n <= 1:`
+   - This is the base case of the recursive function. If the input value `n` is less than or equal to 1, it returns `n`. This is because the Fibonacci sequence starts with 0 and 1, so for `n` values of 0 or 1, the Fibonacci number is simply the same as `n`.
+
+3. `else:`
+   - If the input value `n` is greater than 1, the function proceeds to the else block.
+
+4. `return(recur_fibo(n-1) + recur_fibo(n-2))`
+   - In this line, the function recursively calls itself to calculate the nth Fibonacci number. It does this by adding the result of `recur_fibo(n-1)` and `recur_fibo(n-2)`. This is because each Fibonacci number is the sum of the two preceding Fibonacci numbers. The function will keep calling itself until it reaches the base case (n <= 1), and then it starts returning values back up the call stack to calculate the final result.
+
+5. `nterms = int(input("How many terms? "))`
+   - This line takes user input to specify how many terms of the Fibonacci sequence they want to generate. It converts the input to an integer and stores it in the variable `nterms`.
+
+6. `if nterms <= 0:`
+   - This condition checks if the value entered by the user is less than or equal to 0. If it is, it prints a message asking the user to enter a positive integer.
+
+7. `else:`
+   - If the value entered by the user is a positive integer, the code proceeds to the else block.
+
+8. `print("Fibonacci sequence:")`
+   - This line prints a header to indicate that the following output will be the Fibonacci sequence.
+
+9. `for i in range(nterms):`
+   - This sets up a loop that will run for `nterms` iterations, where `nterms` is the number of terms specified by the user.
+
+10. `print(recur_fibo(i))`
+    - Inside the loop, it calls the `recur_fibo` function with the index `i` as an argument and prints the result. This will generate and display the Fibonacci sequence up to the specified number of terms.
+
+The code calculates and prints the Fibonacci sequence using recursion, and it does so by breaking down the problem into smaller subproblems until it reaches the base case and then combines the results to get the final sequence.
+
+Assignment 2 :
+
+The provided code implements Huffman coding for a given input string. Here's a breakdown of the code and how it works:
+
+1. `string = 'BCAADDDCCACACAC'`: This is the input string for which Huffman coding will be applied.
+
+2. `NodeTree` class: This class defines a basic structure for nodes in the Huffman tree. Each node can have a left and right child.
+
+    - `__init__(self, left=None, right=None)`: Initializes a node with optional left and right children.
+    - `children(self)`: Returns a tuple containing the left and right children of the node.
+    - `nodes(self)`: Returns a tuple containing the left and right children of the node.
+    - `__str__(self)`: Returns a string representation of the node by concatenating the left and right child values with an underscore.
+
+3. `huffman_code_tree(node, left=True, binString='')`:
+   - This is the main function for creating a Huffman code tree. It takes a `node` as input (which is the root of the Huffman tree), a boolean `left` to track whether the current branch is left or right, and a `binString` which represents the binary code for the node.
+   - If the `node` is a string, it means it's a leaf node, and the function returns a dictionary with the character as the key and its corresponding Huffman binary code.
+   - If the `node` is not a leaf node, it recursively calls itself on the left and right children of the node and updates the binary string accordingly.
+   - The function returns a dictionary where keys are characters, and values are their corresponding Huffman codes.
+
+4. Calculating Frequency:
+   - The code first calculates the frequency of each character in the input string and stores the frequency in a dictionary named `freq`.
+
+5. Building Huffman Tree:
+   - The code then sorts the characters and their frequencies in descending order.
+   - It iteratively builds the Huffman tree by taking the two nodes with the lowest frequencies, creating a new node with these two nodes as children, and updating the list of nodes.
+   - This process continues until only one node is left in the list, which becomes the root of the Huffman tree.
+
+6. Generating Huffman Codes:
+   - The Huffman tree is used to generate Huffman codes for each character by calling the `huffman_code_tree` function on the root node. The generated codes are stored in the `huffmanCode` dictionary.
+
+7. Printing Huffman Codes:
+   - Finally, the code prints the characters and their corresponding Huffman codes in a tabular format.
+
+The output of this code will be a table showing each character in the input string and its Huffman code based on the frequency of each character in the input.
+
+The purpose of the provided code is to implement Huffman coding for a given input string. Huffman coding is a lossless data compression algorithm that assigns variable-length binary codes to characters in a way that characters occurring more frequently are assigned shorter codes, while characters occurring less frequently are assigned longer codes. This results in more efficient encoding and compression of the input data.
+
+Here's a breakdown of the code's purpose:
+
+1. Calculate Character Frequencies:
+   - The code calculates the frequency of each character in the input string. This step is essential to determine how often each character occurs in the input data, which will be used to build the Huffman tree.
+
+2. Build Huffman Tree:
+   - The code constructs a Huffman tree from the calculated character frequencies. It iteratively combines nodes with the lowest frequencies to create a binary tree, with characters at the leaf nodes and internal nodes representing combinations of characters. This tree is built in such a way that characters with higher frequencies are closer to the root of the tree.
+
+3. Generate Huffman Codes:
+   - Once the Huffman tree is constructed, the code generates Huffman codes for each character in the input string. These codes are binary representations that indicate how each character should be encoded in the compressed data.
+
+4. Print Huffman Codes:
+   - The code prints the characters from the input string along with their corresponding Huffman codes. This table of character-code pairs can be used to encode the original input string using the Huffman coding scheme.
+
+In summary, the code's primary purpose is to compress data using Huffman coding, allowing for efficient representation of the input by assigning shorter binary codes to more frequently occurring characters and longer codes to less frequently occurring characters. This compression technique is often used in data storage, transmission, and file compression applications to reduce the size of data while preserving its integrity.
+
+Assignment 3 : 
+This code implements a solution for the fractional knapsack problem using a greedy algorithm. The fractional knapsack problem is a classic optimization problem where you are given a set of items, each with a weight and a value, and you want to select a subset of these items to maximize the total value within a given weight capacity (in this case, `W`).
+
+Here's a breakdown of the code:
+
+1. `class Item`: Defines a class for items with attributes `value` and `weight`. Each object of this class represents an item with a specific value and weight.
+
+2. `fractionalKnapsack(W, arr)`: This is the main function that solves the fractional knapsack problem. It takes two arguments:
+   - `W`: The maximum weight capacity of the knapsack.
+   - `arr`: A list of `Item` objects, representing the available items to choose from.
+
+3. `arr.sort(key=lambda x: (x.value/x.weight), reverse=True)`: The list of items `arr` is sorted in descending order based on the value-to-weight ratio of each item. This step helps in selecting the items with the highest value per unit weight first, which is a characteristic of the greedy approach to this problem.
+
+4. `finalvalue = 0.0`: Initialize the variable `finalvalue` to keep track of the maximum value in the knapsack.
+
+5. Loop through the sorted items in the list:
+   - If the weight of the current item (`item.weight`) is less than or equal to the remaining capacity of the knapsack (`W`), add the entire item to the knapsack. Deduct the item's weight from the remaining capacity and add the item's value to the final value.
+   - If the weight of the current item is more than the remaining capacity, add a fraction of the item to the knapsack such that it fills the remaining capacity. Deduct the appropriate fraction of the item's weight from the remaining capacity and add the corresponding fraction of the item's value to the final value. Then, break out of the loop because the knapsack is full.
+
+6. Finally, return the `finalvalue`, which represents the maximum value that can be obtained within the given weight capacity.
+
+7. In the driver code, a test case is provided with a knapsack capacity of 50 and a list of three items with their values and weights. The `fractionalKnapsack` function is called with these inputs, and the maximum value that can be obtained is printed.
+
+This code demonstrates a greedy approach to solving the fractional knapsack problem, which is efficient and provides an approximate optimal solution.
+
+The purpose of the provided code is to solve the Fractional Knapsack problem using a greedy algorithm. The Fractional Knapsack problem is a classic optimization problem where you are given a set of items, each with a weight and a value, and the goal is to select a subset of these items to maximize the total value within a given weight capacity (in this case, `W`). The code achieves this purpose through the following steps:
+
+1. **Item Class**: The `Item` class is defined to create objects representing items. Each item is characterized by its `value` (the benefit or worth of the item) and `weight` (the amount of space or capacity it occupies in the knapsack).
+
+2. **fractionalKnapsack(W, arr)**: This is the main function that solves the Fractional Knapsack problem. It takes two arguments:
+
+   - `W`: The maximum weight capacity of the knapsack.
+   - `arr`: A list of `Item` objects, representing the available items to choose from.
+
+3. **Sorting Items by Value-to-Weight Ratio**: The list of items, `arr`, is sorted in descending order based on the value-to-weight ratio (value divided by weight) of each item. Sorting in this manner is a key aspect of the greedy algorithm. It ensures that items with a higher value per unit weight are considered first, allowing the algorithm to maximize the value within the given capacity.
+
+4. **Iterating Through Items**: The code iterates through the sorted list of items and adds them to the knapsack, either in whole or as a fraction, while ensuring that the knapsack's weight capacity is not exceeded.
+
+   - If the weight of the current item (`item.weight`) is less than or equal to the remaining capacity of the knapsack (`W`), the entire item is added to the knapsack. The item's weight is subtracted from the remaining capacity, and its value is added to the `finalvalue`.
+
+   - If the weight of the current item is more than the remaining capacity, a fraction of the item is added to the knapsack such that it fills the remaining capacity. The appropriate fraction of the item's weight is subtracted from the remaining capacity, and the corresponding fraction of the item's value is added to the `finalvalue`.
+
+   - The loop continues until the knapsack is either full or all items have been considered.
+
+5. **Return Maximum Value**: The function returns the `finalvalue`, which represents the maximum value that can be obtained within the given weight capacity.
+
+6. **Driver Code**: In the provided test case, a knapsack capacity of 50 and a list of three items with their values and weights are specified. The `fractionalKnapsack` function is called with these inputs, and the maximum value that can be obtained is printed.
+
+The purpose of this code is to demonstrate how a greedy algorithm can efficiently solve the Fractional Knapsack problem by selecting items based on their value-to-weight ratio, ultimately maximizing the total value that can be accommodated in the knapsack.
+
+Ass 5 Geeta :
+
+This code is an implementation of the N-Queens problem, a classic puzzle that involves placing N chess queens on an N×N chessboard so that no two queens threaten each other. In this code, a solution to the N-Queens problem is found and the board is printed with queen placements.
+
+Here's a breakdown of the code:
+
+1. `print ("Enter the number of queens")`: This line asks the user to input the number of queens they want to place on the chessboard.
+
+2. `N = int(input())`: It reads the user's input and stores it in the variable `N`, representing the size of the N×N chessboard and the number of queens to be placed.
+
+3. `board = [[0]*N for _ in range(N)]`: This line initializes an N×N chessboard represented as a 2D list, where each element is initialized to 0, indicating an empty square.
+
+4. `is_attack(i, j)`: This is a function that checks if a queen placed at a given position `(i, j)` is under attack by any other queen on the board. It checks for attacks in the same row, column, and both diagonal directions.
+
+5. `N_queen(n)`: This is the recursive function to find a solution to the N-Queens problem. It takes the current number of queens to place as `n`.
+
+   - If `n` is 0, it means all queens are placed without any conflicts, and it returns `True`.
+
+   - It loops through the rows and columns of the chessboard and checks if a queen can be placed in a particular position without being attacked by another queen. If a safe position is found, it places a queen there (by setting `board[i][j] = 1`) and recursively calls `N_queen` with `n-1`.
+
+   - If placing a queen at `(i, j)` doesn't lead to a solution (i.e., `N_queen(n-1)` returns `False`), it removes the queen by setting `board[i][j] = 0` and continues checking other positions.
+
+   - If a solution is found at any point during the recursive calls, the function returns `True`.
+
+   - If no solution is found after exploring all possible positions, the function returns `False`.
+
+6. `N_queen(N)`: This line starts the N-Queens solving process with the initial value of `N`. The result of this function call is not used, but it modifies the `board` 2D list during execution to represent a valid queen placement.
+
+7. Finally, the code prints the `board`, which now represents a valid placement of queens on the chessboard such that no two queens threaten each other. The board is printed row by row, with '1' representing the positions where queens are placed and '0' representing empty squares.
+
+The purpose of this code is to find a solution to the N-Queens problem and display a valid placement of queens on the chessboard.
